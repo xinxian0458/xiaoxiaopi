@@ -1,0 +1,25 @@
+#!/bin/bash
+TENANT_NAME=<%= @tenant_name %>
+TENANT_NETWORK_NAME=<%= @tenant_network %>
+TENANT_SUBNET_NAME=<%= @tenant_subnet %>
+TENANT_ROUTER_NAME=<%= @tenant_router %>
+FIXED_RANGE=<%= @fixed_network_range %>
+NETWORK_GATEWAY=<%= @network_gateway %>
+
+PUBLIC_GATEWAY=<%= @public_gateway %>
+PUBLIC_RANGE=<%= @public_network_range %>
+PUBLIC_START=<%= @public_address_start %>
+PUBLIC_END=<%= @public_address_end %>
+
+TENANT_ID=$(keystone tenant-list | grep " $TENANT_NAME " | awk '{print $2}')
+TENANT_NET_ID=$(quantum net-create --tenant_id $TENANT_ID $TENANT_NETWORK_NAME --provider:network_type gre --provider:segmentation_id 1 | grep " id " | awk '{print $4}')
+TENANT_SUBNET_ID=$(quantum subnet-create --tenant_id $TENANT_ID --ip_version 4 --name $TENANT_SUBNET_NAME $TENANT_NET_ID $FIXED_RANGE --gateway $NETWORK_GATEWAY --dns_nameservers list=true 8.8.8.8 | grep " id " | awk '{print $4}')
+ROUTER_ID=$(quantum router-create --tenant_id $TENANT_ID $TENANT_ROUTER_NAME | grep " id " | awk '{print $4}')
+quantum router-interface-add $ROUTER_ID $TENANT_SUBNET_ID
+
+quantum net-create public --router:external=True
+
+quantum subnet-create --ip_version 4 --gateway $PUBLIC_GATEWAY public $PUBLIC_RANGE --allocation-pool start=$PUBLIC_START,end=$PUBLIC_END --disable-dhcp --name public-subnet
+
+quantum router-gateway-set demo-router public
+

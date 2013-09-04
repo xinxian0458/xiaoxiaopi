@@ -49,7 +49,15 @@ config_item_defaults:
   - name: enabled
     value: 'true'
   - name: keystone_bind_address
-    value: 0.0.0.0
+    value: '0.0.0.0'
+  - name: demo_tenant
+    value: 'demo'
+  - name: demo_user
+    value: 'demo'
+  - name: demo_email
+    value: 'demo@localhost'
+  - name: demo_password
+    value: password  
 
 component_config_defaults:
 

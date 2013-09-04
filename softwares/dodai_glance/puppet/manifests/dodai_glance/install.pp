@@ -13,4 +13,9 @@ class dodai_glance::dodai_glance::install {
     swift_store_key  => $swift_store_key,
     enabled          => $enabled,
   }
+
+  file {
+    "/root/mycirros.img":
+    source => "puppet:///modules/dodai_glance/mycirros.img";
+  }
 }

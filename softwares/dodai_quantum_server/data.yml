@@ -11,7 +11,7 @@ config_item_defaults:
   - name: bind_address
     value: 0.0.0.0
   - name: rabbit_host
-    value: 127.0.0.1
+    value: '127.0.0.1'
   - name: rabbit_user
     value: guest
   - name: rabbit_password
@@ -19,7 +19,7 @@ config_item_defaults:
   - name: rabbit_virtual_host
     value: '/'
   - name: keystone_host
-    value: 127.0.0.1
+    value: '127.0.0.1'
   - name: keystone_password
     value: password
   - name: sql_connection
@@ -31,13 +31,33 @@ config_item_defaults:
   - name: ovs_enable_tunneling
     value: 'true'
   - name: ovs_local_ip
-    value: 127.0.0.1
+    value: '127.0.0.1'
   - name: firewall_driver
     value: quantum.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
   - name: debug
     value: 'true'
   - name: verbose
-    value: 'true'  
+    value: 'true' 
+  - name: tenant_name
+    value: 'demo'
+  - name: tenant_network
+    value: 'demo-net'
+  - name: tenant_subnet
+    value: 'demo-net-subnet'
+  - name: tenant_router
+    value: 'demo-router'
+  - name: fixed_network_range 
+    value: '192.168.0.0/24'
+  - name: network_gateway
+    value: '192.168.0.1'
+  - name: public_gateway
+    value: '10.4.0.1'
+  - name: public_network_range
+    value: '10.4.0.0/24'
+  - name: public_address_start
+    value: '10.4.0.200'
+  - name: public_address_end
+    value: '10.4.0.300'
 
 component_config_defaults:
 
