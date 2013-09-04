@@ -35,6 +35,7 @@ class dodai_quantum_compute::dodai_quantum_compute::install {
 
   class { 'nova::compute::quantum':
     libvirt_vif_driver => $libvirt_vif_driver,
+    notify             => Exec['restart_nova_compute'],
   }
 
   # Configures nova.conf entries applicable to Quantum.
@@ -45,5 +46,11 @@ class dodai_quantum_compute::dodai_quantum_compute::install {
     quantum_admin_username    => $quantum_admin_user,
     quantum_admin_tenant_name => $quantum_admin_tenant_name,
     quantum_admin_auth_url    => "http://${keystone_host}:35357/v2.0",
+    notify                    => Exec['restart_nova_compute'],
+  }
+
+  exec { 'restart_nova_compute':
+      command     => "service nova-compute restart",
+      refreshonly => true,
   }
 }
