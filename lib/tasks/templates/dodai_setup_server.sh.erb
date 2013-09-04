@@ -1,0 +1,11 @@
+#!/bin/bash
+apt-get update
+apt-get install git -y
+git clone https://github.com/nii-cloud/dodai-deploy
+
+sed -i -e '/127\.0\.1\.1/d' /etc/hosts
+
+cd /dodai-deploy
+
+setup-env/setup.sh -p <%= server_port %> server > /var/log/dodai-deploy.log 2>&1
+script/start-servers production <%= server_port %>

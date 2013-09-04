@@ -1,0 +1,19 @@
+description: rabbitmq server
+
+components:
+  - name: dodai_rabbitmq
+
+component_dependencies:
+
+config_item_defaults:
+  - name: port
+    value: 5672
+  - name: rabbit_password
+    value: password
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_rabbitmq

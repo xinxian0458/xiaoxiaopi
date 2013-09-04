@@ -1,0 +1,6 @@
+log
+tmp
+db/*.sqlite3
+coverage*
+test/fixtures/*.yml
+Gemfile.lock

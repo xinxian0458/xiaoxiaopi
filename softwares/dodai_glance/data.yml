@@ -1,0 +1,39 @@
+description: openstack glance
+
+components:
+  - name: dodai_glance
+
+component_dependencies:
+
+config_item_defaults:
+  - name: verbose
+    value: 'true'
+  - name: db_type
+    value: mysql
+  - name: db_host
+    value: 127.0.0.1
+  - name: keystone_host 
+    value: 127.0.0.1
+  - name: glance_db_user
+    value: glance
+  - name: glance_db_dbname 
+    value: glance
+  - name: glance_db_password
+    value: password
+  - name: glance_user_password
+    value: password
+  - name: glance_backend
+    value: 'file'
+  - name: swift_store_user
+    value: swift
+  - name: swift_store_key
+    value: password
+  - name: enabled
+    value: 'true'
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_glance

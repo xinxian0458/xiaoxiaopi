@@ -1,0 +1,47 @@
+description: openstack cinder controller
+
+components:
+  - name: dodai_cinder_controller
+
+component_dependencies:
+
+config_item_defaults:
+  - name: cinder_bind_address
+    value: '0.0.0.0'
+  - name: sql_idle_timeout
+    value: 100
+  - name: keystone_host
+    value: 127.0.0.1
+  - name: cinder_user_password
+    value: password
+  - name: rabbit_user 
+    value: guest
+  - name: rabbit_password
+    value: password
+  - name: rabbit_host 
+    value: 127.0.0.1
+  - name: cinder_db_password
+    value: password
+  - name: cinder_db_dbname
+    value: cinder
+  - name: cinder_db_user
+    value: cinder
+  - name: db_type
+    value: mysql
+  - name: db_host
+    value: 127.0.0.1
+  - name: api_enabled
+    value: 'true'
+  - name: scheduler_enabled
+    value: 'true'
+  - name: debug
+    value: 'true'
+  - name: verbose
+    value: 'true'
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_cinder_controller

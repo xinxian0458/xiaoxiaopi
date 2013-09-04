@@ -1,0 +1,17 @@
+description: apt source
+
+components:
+  - name: dodai_apt
+
+component_dependencies:
+
+config_item_defaults:
+  - name: version
+    value: grizzly
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_apt

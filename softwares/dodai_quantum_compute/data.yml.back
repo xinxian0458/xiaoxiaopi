@@ -1,0 +1,43 @@
+description: openstack quantum compute
+
+components:
+  - name: dodai_quantum_compute
+
+component_dependencies:
+
+config_item_defaults:
+  - name: rabbit_host
+    value: '127.0.0.1'
+  - name: rabbit_user
+    value: guest
+  - name: rabbit_password
+    value: password
+  - name: rabbit_virtual_host
+    value: '/'
+  - name: ovs_local_ip_real
+    value: '127.0.0.1'
+  - name: external_bridge_name
+    value: br-ex
+  - name: bridge_interface
+    value: eth1
+  - name: firewall_driver
+    value: quantum.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
+  - name: enabled
+    value: true
+  - name: verbose
+    value: true
+  - name: libvirt_vif_driver
+    value: nova.virt.libvirt.vif.LibvirtHybridOVSBridgeDriver
+  - name: shared_secret
+    value: password
+  - name: auth_url
+    value: http://127.0.0.1:35357/v2.0
+  - name: metadata_ip
+    value: '0.0.0.0'
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_quantum_compute

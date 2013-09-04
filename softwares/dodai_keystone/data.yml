@@ -1,0 +1,59 @@
+description: openstack keystone
+
+components:
+  - name: dodai_keystone
+
+component_dependencies:
+
+config_item_defaults:
+  - name: verbose
+    value: 'true'
+  - name: db_type
+    value: mysql
+  - name: db_host
+    value: 127.0.0.1
+  - name: keystone_db_password 
+    value: password
+  - name: keystone_db_dbname
+    value: keystone
+  - name: keystone_db_user 
+    value: keystone
+  - name: keystone_admin_token
+    value: password
+  - name: keystone_admin_tenant
+    value: admin
+  - name: admin_email
+    value: root@localhost
+  - name: admin_password
+    value: password
+  - name: public_address
+    value: 127.0.0.1
+  - name: internal_address_real
+    value: 127.0.0.1
+  - name: admin_address_real
+    value: 127.0.0.1  
+  - name: region
+    value: RegionOne
+  - name: glance_user_password
+    value: password
+  - name: nova_user_password
+    value: password
+  - name: cinder
+    value: 'true'
+  - name: cinder_user_password
+    value: password
+  - name: quantum
+    value: 'true'
+  - name: quantum_user_password
+    value: password
+  - name: enabled
+    value: 'true'
+  - name: keystone_bind_address
+    value: 0.0.0.0
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_keystone

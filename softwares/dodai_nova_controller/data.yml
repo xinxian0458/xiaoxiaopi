@@ -1,0 +1,77 @@
+description: openstack nova controller
+
+components:
+  - name: dodai_nova_controller
+
+component_dependencies:
+
+config_item_defaults:
+  - name: db_host
+    value: 127.0.0.1
+  - name: network_manager
+    value: nova.network.manager.FlatDHCPManager
+  - name: floating_range 
+    value: '10.5.0.0/24'
+  - name: fixed_range
+    value: '192.168.0.0/24'
+  - name: public_address 
+    value: 127.0.0.1
+  - name: admin_address
+    value: 127.0.0.1
+  - name: internal_address_real
+    value: 127.0.0.1
+  - name: auto_assign_floating_ip
+    value: 'false'
+  - name: create_networks
+    value: 'true'
+  - name: num_networks
+    value: 1
+  - name: multi_host
+    value: 'false'
+  - name: public_interface
+    value: eth0
+  - name: private_interface
+    value: eth0  
+  - name: quantum
+    value: 'true'
+  - name: quantum_user_password
+    value: password
+  - name: metadata_shared_secret
+    value: password
+  - name: nova_admin_tenant_name
+    value: services
+  - name: nova_admin_user
+    value: nova
+  - name: nova_user_password
+    value: password
+  - name: nova_db_password
+    value: password
+  - name: nova_db_user
+    value: nova
+  - name: nova_db_dbname
+    value: nova
+  - name: enabled_apis
+    value: 'ec2,osapi_compute,metadata'
+  - name: rabbit_user
+    value: guest
+  - name: rabbit_password
+    value: password
+  - name: rabbit_virtual_host
+    value: '/'        
+  - name: glance_api_servers_real
+    value: '127.0.0.1:9292'
+  - name: vnc_enabled
+    value: 'true'
+  - name: vncproxy_host_real
+    value: 127.0.0.1
+  - name: verbose
+    value: 'true'
+  - name: enabled
+    value: 'true'    
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_nova_controller

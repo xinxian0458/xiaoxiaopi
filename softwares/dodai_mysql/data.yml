@@ -1,0 +1,60 @@
+description: openstack mysql
+
+components:
+  - name: dodai_mysql
+
+component_dependencies:
+
+config_item_defaults:
+  - name: mysql_root_password
+    value: password
+  - name: mysql_bind_address
+    value: 0.0.0.0
+  - name: mysql_account_security
+    value: 'true'
+  - name: keystone_db_user 
+    value: keystone
+  - name: keystone_db_password
+    value: password
+  - name: keystone_db_dbname 
+    value: keystone
+  - name: glance_db_user
+    value: glance
+  - name: glance_db_password
+    value: password
+  - name: glance_db_dbname
+    value: glance
+  - name: nova_db_user
+    value: nova
+  - name: nova_db_password
+    value: password
+  - name: nova_db_dbname
+    value: nova
+  - name: cinder
+    value: 'true'
+  - name: cinder_db_user
+    value: cinder  
+  - name: cinder_db_password
+    value: password
+  - name: cinder_db_dbname
+    value: cinder
+  - name: quantum
+    value: 'true'
+  - name: quantum_db_user
+    value: quantum
+  - name: quantum_db_password
+    value: password
+  - name: quantum_db_name
+    value: quantum
+  - name: allowed_hosts
+    value: '%'
+  - name: enabled
+    value: 'true'
+
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_mysql

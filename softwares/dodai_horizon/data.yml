@@ -1,0 +1,21 @@
+description: openstack horizon
+
+components:
+  - name: dodai_horizon
+
+component_dependencies:
+
+config_item_defaults:
+  - name: secret_key
+    value: password
+  - name: cache_server_ip
+    value: 127.0.0.1
+  - name: cache_server_port
+    value: 11211
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_horizon

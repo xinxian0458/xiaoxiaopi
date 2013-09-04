@@ -1,0 +1,37 @@
+description: openstack cinder compute
+
+components:
+  - name: dodai_cinder_compute
+
+component_dependencies:
+
+config_item_defaults:
+  - name: cinder_sql_connection
+    value: 'mysql://cinder:password@localhost/cinder'
+  - name: rabbit_user 
+    value: guest
+  - name: rabbit_password
+    value: password
+  - name: rabbit_host 
+    value: '127.0.0.1'
+  - name: rabbit_virtual_host
+    value: '/'
+  - name: iscsi_ip_address
+    value: '127.0.0.1'
+  - name: setup_test_volume
+    value: 'false'
+  - name: volume_group
+    value: cinder-volumes
+  - name: enabled
+    value: 'true'
+  - name: verbose
+    value: 'true'
+  - name: cinder_volume_driver
+    value: 'iscsi'
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_cinder_compute

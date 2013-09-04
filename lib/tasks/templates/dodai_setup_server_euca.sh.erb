@@ -1,0 +1,21 @@
+#!/bin/bash
+apt-get update
+apt-get install git euca2ools ruby -y
+git clone https://github.com/nii-cloud/dodai-deploy
+
+sed -i -e '/127\.0\.1\.1/d' /etc/hosts
+
+cd /dodai-deploy
+
+cat > add_hosts.rb <<EOF
+\`sed -i -e "/10.3.4/d" /etc/hosts\`
+254.times {|index|
+  ip = "10.3.4.#{index + 1}"
+  hostname = "ip-" + ip.gsub(/\./, "-")
+  \`echo "#{ip} #{hostname}" >> /etc/hosts\`
+}
+EOF
+ruby add_hosts.rb
+
+setup-env/setup.sh -p <%= server_port %> server
+script/start-servers production <%= server_port %>

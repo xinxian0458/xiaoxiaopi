@@ -1,0 +1,41 @@
+description: openstack nova compute
+
+components:
+  - name: dodai_nova_compute
+
+component_dependencies:
+
+config_item_defaults:
+  - name: nova_sql_connection
+    value: 'mysql://nova:password@127.0.0.1/nova'
+  - name: rabbit_user
+    value: guest
+  - name: rabbit_password
+    value: password
+  - name: glance_api_servers
+    value: '127.0.0.1:9292'
+  - name: verbose
+    value: 'true'
+  - name: rabbit_host
+    value: '127.0.0.1'
+  - name: rabbit_virtual_host
+    value: '/'
+  - name: enabled
+    value: true
+  - name: vnc_enabled
+    value: true
+  - name: vncserver_proxyclient_address
+    value: '127.0.0.1'
+  - name: vncproxy_host 
+    value: '127.0.0.1'
+  - name: libvirt_type
+    value: 'qemu'
+  - name: vncserver_listen 
+    value: '0.0.0.0'
+
+component_config_defaults:
+
+software_config_defaults:
+
+test_components:
+  - component: dodai_nova_compute
