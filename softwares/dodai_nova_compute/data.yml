@@ -21,9 +21,9 @@ config_item_defaults:
   - name: rabbit_virtual_host
     value: '/'
   - name: enabled
-    value: true
+    value: 'true'
   - name: vnc_enabled
-    value: true
+    value: 'true'
   - name: vncserver_proxyclient_address
     value: '127.0.0.1'
   - name: vncproxy_host 

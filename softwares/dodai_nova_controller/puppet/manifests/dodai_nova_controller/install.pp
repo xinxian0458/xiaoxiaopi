@@ -2,6 +2,7 @@ class dodai_nova_controller::dodai_nova_controller::install {
   class { 'openstack::nova::controller':
     # Database
     db_host                 => $db_host,
+    public_address          => $public_address,
     # Quantum
     quantum                 => $quantum,
     quantum_user_password   => $quantum_user_password,

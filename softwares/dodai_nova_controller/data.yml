@@ -8,6 +8,8 @@ component_dependencies:
 config_item_defaults:
   - name: db_host
     value: 127.0.0.1
+  - name: public_address
+    value: 127.0.0.1
   - name: quantum
     value: 'true'
   - name: quantum_user_password

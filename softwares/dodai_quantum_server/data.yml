@@ -57,7 +57,7 @@ config_item_defaults:
   - name: public_address_start
     value: '10.4.0.200'
   - name: public_address_end
-    value: '10.4.0.300'
+    value: '10.4.0.250'
 
 component_config_defaults:
 

@@ -35,15 +35,15 @@ class dodai_quantum_server::dodai_quantum_server::install {
   }  
 
   class { 'dodai_quantum_server::dodai_quantum_server::create_network_file':
-    tenant_name              =>   $tenant_name              
-    tenant_network           =>   $tenant_network           
-    tenant_subnet            =>   $tenant_subnet            
-    tenant_router            =>   $tenant_router            
-    fixed_network_range      =>   $fixed_network_range      
-    network_gateway          =>   $network_gateway          
-    public_gateway           =>   $public_gateway           
-    public_network_range     =>   $public_network_range     
-    public_address_start     =>   $public_address_start     
-    public_address_end       =>   $public_address_end       
+    tenant_name              =>   $tenant_name,              
+    tenant_network           =>   $tenant_network,           
+    tenant_subnet            =>   $tenant_subnet,            
+    tenant_router            =>   $tenant_router,            
+    fixed_network_range      =>   $fixed_network_range,      
+    network_gateway          =>   $network_gateway,          
+    public_gateway           =>   $public_gateway,           
+    public_network_range     =>   $public_network_range,     
+    public_address_start     =>   $public_address_start,    
+    public_address_end       =>   $public_address_end,       
   }  
 }
