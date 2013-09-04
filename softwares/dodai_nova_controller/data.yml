@@ -8,30 +8,8 @@ component_dependencies:
 config_item_defaults:
   - name: db_host
     value: 127.0.0.1
-  - name: network_manager
-    value: nova.network.manager.FlatDHCPManager
-  - name: floating_range 
-    value: '10.5.0.0/24'
-  - name: fixed_range
-    value: '192.168.0.0/24'
-  - name: public_address 
+  - name: public_address
     value: 127.0.0.1
-  - name: admin_address
-    value: 127.0.0.1
-  - name: internal_address_real
-    value: 127.0.0.1
-  - name: auto_assign_floating_ip
-    value: 'false'
-  - name: create_networks
-    value: 'true'
-  - name: num_networks
-    value: 1
-  - name: multi_host
-    value: 'false'
-  - name: public_interface
-    value: eth0
-  - name: private_interface
-    value: eth0  
   - name: quantum
     value: 'true'
   - name: quantum_user_password

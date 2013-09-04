@@ -21,7 +21,7 @@ class Proposal < ActiveRecord::Base
                                          "installing", "uninstalling", "testing",
                                          "waiting"]
 
-  belongs_to :software, :dependent => :destroy
+  belongs_to :software
   has_many :node_configs, :dependent => :destroy, :finder_sql =>
     proc { "select nc.* " +
     "from node_configs nc, components c " +

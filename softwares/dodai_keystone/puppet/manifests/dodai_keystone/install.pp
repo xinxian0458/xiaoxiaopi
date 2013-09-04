@@ -23,4 +23,28 @@ class dodai_keystone::dodai_keystone::install {
     enabled               => $enabled,
     bind_host             => $keystone_bind_address,
   }
+
+  class { 'openstack::auth_file':
+    admin_password       => $admin_password,
+    keystone_admin_token => $keystone_admin_token,
+    controller_node      => '127.0.0.1',
+  }
+
+  keystone_tenant { $demo_tenant:
+    ensure      => present,
+    enabled     => true,
+    description => 'demo tenant',
+  }
+  keystone_user { $demo_user:
+    ensure      => present,
+    enabled     => true,
+    tenant      => $demo_tenant,
+    email       => $demo_email,
+    password    => $demo_password,
+  }
+
+  keystone_user_role { "${demo_user}@${demo_tenant}":
+    roles  => 'Member',
+    ensure => present,
+  }
 }

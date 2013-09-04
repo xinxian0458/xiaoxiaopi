@@ -2,20 +2,7 @@ class dodai_nova_controller::dodai_nova_controller::install {
   class { 'openstack::nova::controller':
     # Database
     db_host                 => $db_host,
-    # Network
-    network_manager         => $network_manager,
-    network_config          => {},
-    floating_range          => $floating_range,
-    fixed_range             => $fixed_range,
     public_address          => $public_address,
-    admin_address           => $admin_address,
-    internal_address        => $internal_address_real,
-    auto_assign_floating_ip => $auto_assign_floating_ip,
-    create_networks         => $create_networks,
-    num_networks            => $num_networks,
-    multi_host              => $multi_host,
-    public_interface        => $public_interface,
-    private_interface       => $private_interface,
     # Quantum
     quantum                 => $quantum,
     quantum_user_password   => $quantum_user_password,
