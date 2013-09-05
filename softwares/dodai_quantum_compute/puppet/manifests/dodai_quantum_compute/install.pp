@@ -1,9 +1,7 @@
 class dodai_quantum_compute::dodai_quantum_compute::install {
-  
-  include quantum
 
-  Service['quantum-plugin-ovs-service']<||> ~> class{ 'setup_bridge':
-    $br_names => ['br-int', 'br-tun'],
+  Service['quantum-plugin-ovs-service'] ~> class{ 'setup_bridge':
+    br_names => ['br-int', 'br-tun'],
   }
 
   class { '::quantum':
