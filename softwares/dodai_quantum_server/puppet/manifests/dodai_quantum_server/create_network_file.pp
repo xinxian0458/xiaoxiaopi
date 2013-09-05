@@ -14,7 +14,13 @@ class dodai_quantum_server::dodai_quantum_server::create_network_file(
   file { '/root/create_network.sh':
     owner   => 'root',
     group   => 'root',
-    mode    => '0700',
-    content => template("${module_name}/create_network.erb")
+    mode    => '0755',
+    content => template("${module_name}/create_network.erb"),
+    notify  => Exec['create_network'],
+  }
+
+  exec { 'create_network':
+    command     => '/root/create_network.sh',
+    refreshonly => true,
   }
 }
