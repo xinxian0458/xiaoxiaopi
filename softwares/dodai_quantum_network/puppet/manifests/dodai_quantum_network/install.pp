@@ -1,4 +1,9 @@
 class dodai_quantum_network::dodai_quantum_network::install {
+  
+  Service['quantum-plugin-ovs-service'] ~> class{ 'dodai_quantum_compute::dodai_quantum_compute::install::setup_bridge':
+    br_names => ['br-int', 'br-tun', 'br-ex'],
+  }
+  
   class { '::quantum':
     enabled             => true,
     core_plugin         => $core_plugin,
@@ -31,7 +36,6 @@ class dodai_quantum_network::dodai_quantum_network::install {
     enable_tunneling => $ovs_enable_tunneling,
     local_ip         => $ovs_local_ip,
     firewall_driver  => $firewall_driver,
-    notify           => Class['up_bridge'],
   }
 
   class { 'quantum::agents::dhcp':
@@ -50,11 +54,5 @@ class dodai_quantum_network::dodai_quantum_network::install {
     auth_url       => $auth_url,
     metadata_ip    => $metadata_ip,
     debug          => $debug,
-  }
-
-  class up_bridge {
-    exec { "ip link set br-int up": }
-    exec { "ip link set br-tun up": }
-    exec { "ip link set br-ex up": }
   }
 }
