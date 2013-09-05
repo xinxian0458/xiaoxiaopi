@@ -1,4 +1,9 @@
 class dodai_quantum_compute::dodai_quantum_compute::install {
+  
+  include quantum
+
+  Service['quantum-plugin-ovs-service']<||> ~> exec{ 'ip link set br-int up': } ~> exec{ 'ip link set br-tun up': }
+
   class { '::quantum':
     enabled             => true,
     core_plugin         => $core_plugin,
@@ -53,4 +58,5 @@ class dodai_quantum_compute::dodai_quantum_compute::install {
       command     => "service nova-compute restart",
       refreshonly => true,
   }
+
 }
