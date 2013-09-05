@@ -2,7 +2,9 @@ class dodai_quantum_compute::dodai_quantum_compute::install {
   
   include quantum
 
-  Service['quantum-plugin-ovs-service']<||> ~> exec{ 'ip link set br-int up': } ~> exec{ 'ip link set br-tun up': }
+  Service['quantum-plugin-ovs-service']<||> ~> class{ 'setup_bridge':
+    $br_names => ['br-int', 'br-tun'],
+  }
 
   class { '::quantum':
     enabled             => true,
