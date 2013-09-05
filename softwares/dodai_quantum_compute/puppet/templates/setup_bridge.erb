@@ -1,0 +1,5 @@
+#!/bin/bash
+sleep 30
+<% br_names.each do |br_name| %>
+ip link set <%= br_name %> up
+<% end %>

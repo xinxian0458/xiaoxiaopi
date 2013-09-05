@@ -1,4 +1,9 @@
 class dodai_quantum_compute::dodai_quantum_compute::install {
+
+  Service['quantum-plugin-ovs-service'] ~> class{ 'setup_bridge':
+    br_names => ['br-int', 'br-tun'],
+  }
+
   class { '::quantum':
     enabled             => true,
     core_plugin         => $core_plugin,
@@ -53,4 +58,5 @@ class dodai_quantum_compute::dodai_quantum_compute::install {
       command     => "service nova-compute restart",
       refreshonly => true,
   }
+
 }
