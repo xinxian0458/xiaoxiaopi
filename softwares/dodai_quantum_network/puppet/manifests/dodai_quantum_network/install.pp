@@ -27,7 +27,7 @@ class dodai_quantum_network::dodai_quantum_network::install {
 
   class { 'quantum::agents::ovs':
     bridge_uplinks   => ["${external_bridge_name}:${bridge_interface}"],
-    bridge_mappings  => [],
+    bridge_mappings  => ["default:${external_bridge_name}"],
     enable_tunneling => $ovs_enable_tunneling,
     local_ip         => $ovs_local_ip,
     firewall_driver  => $firewall_driver,
