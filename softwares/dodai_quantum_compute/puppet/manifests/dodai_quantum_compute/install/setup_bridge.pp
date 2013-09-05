@@ -11,6 +11,5 @@ class dodai_quantum_compute::dodai_quantum_compute::install::setup_bridge (
 
   	exec { 'setup_bridge':
     	command     => '/root/setup_bridge.sh',
-    	refreshonly => true,
   	}
 }
