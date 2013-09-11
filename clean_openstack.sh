@@ -68,6 +68,7 @@ clean_keystone(){
 	do
 		apt-get purge -y ${software}
 	done
+	rm -rf /root/openrc
 }
 
 ##################################
@@ -112,6 +113,7 @@ clean_nova(){
 		apt-get purge -y ${software}
 	done
 	rm -rf /var/lib/nova/*
+	rm -rf /root/setup_bridge.sh
 }
 
 #####################################
@@ -145,6 +147,8 @@ clean_quantum(){
 		apt-get purge -y ${software}
 	done
 	rm -rf /root/create_network.sh
+	rm -rf /root/setup_bridge.sh
+	rm -rf /root/setup_external_network.sh
 }
 
 #######################################
