@@ -1,4 +1,6 @@
 class dodai_quantum_server::dodai_quantum_server::install {
+  Class['Quantum::Server'] -> Class['Dodai_quantum_server::Dodai_quantum_server::Create_network_file']
+
   class { '::quantum':
     enabled             => true,
     core_plugin         => $core_plugin,
