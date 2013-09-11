@@ -24,7 +24,7 @@ class dodai_quantum_network::dodai_quantum_network::install {
   }
 
   class { 'quantum::server':
-    enabled       => false,
+    enabled       => $quantum_server_enable,
     auth_host     => $keystone_host,
     auth_password => $keystone_password,
   }

@@ -26,6 +26,8 @@ config_item_defaults:
     value: mysql://quantum:password@127.0.0.1/quantum
   - name: sql_idle_timeout
     value: 100
+  - name: quantum_server_enable
+    value: 'true'
   - name: tenant_network_type
     value: gre
   - name: external_bridge_name
