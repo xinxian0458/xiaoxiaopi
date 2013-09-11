@@ -183,6 +183,8 @@ clean_openvswitch(){
 		done
 		ovs-vsctl del-br ${bridge}
 	done
+	ovs-vsctl del-br int-br-ex
+	ovs-vsctl del-br phy-br-ex
 	mkdir -p ${BACKUP_DIR}/openvswitch
 	mv /etc/openvswitch/* ${BACKUP_DIR}/openvswitch/
 	mv /etc/openvswitch-switch/* ${BACKUP_DIR}/openvswitch/
@@ -198,6 +200,17 @@ clean_openvswitch(){
 	done
 }
 
+################################################
+# kill process
+################################################
+kill_process(){
+	processes = "kvm, dnsmasq quantum"
+	for process in $processes
+	do
+		ps uax | grep ${process} | grep -v "grep" |awk '{print $2}' | xargs kill -s 9
+	done
+}
+
 clean_apt
 clean_mysql
 clean_rabbitmq
@@ -205,7 +218,8 @@ clean_keystone
 clean_glance
 clean_nova
 clean_cinder
-clean_quantum
 clean_horizon
 clean_openvswitch
-apt-get autoremove
+clean_quantum
+kill_process
+apt-get -y autoremove
