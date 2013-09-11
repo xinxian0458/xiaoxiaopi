@@ -137,7 +137,7 @@ clean_cinder(){
 	rm -rf /var/lib/cinder/*
 	pvremove cinder-volumes
 	vgremove cinder-volumes
-	lodevice = `losetup -a | grep cinder | awk '{print $1}' | cut -f1 -d ":"`
+	lodevice=`losetup -a | grep cinder | awk '{print $1}' | cut -f1 -d ":"`
 	losetup -d ${lodevice}
 }
 
@@ -204,6 +204,7 @@ clean_openvswitch(){
 	do
 		apt-get purge -y ${software}
 	done
+	sleep 30
 	ipnamespaces=`ip netns list`
 	for ipnamespace in $ipnamespaces
 	do
@@ -215,7 +216,7 @@ clean_openvswitch(){
 # kill process
 ################################################
 kill_process(){
-	processes = "kvm, dnsmasq quantum"
+	processes="kvm dnsmasq quantum"
 	for process in $processes
 	do
 		ps uax | grep ${process} | grep -v "grep" |awk '{print $2}' | xargs kill -s 9
