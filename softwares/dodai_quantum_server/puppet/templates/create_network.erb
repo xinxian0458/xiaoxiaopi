@@ -1,5 +1,13 @@
 #!/bin/bash
-source /root/openrc
+export OS_SERVICE_TOKEN=password
+export OS_SERVICE_ENDPOINT=http://127.0.0.1:35357/v2.0/
+export OS_NO_CACHE=true
+export OS_TENANT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=password
+export OS_AUTH_URL=http://127.0.0.1:5000/v2.0/
+export OS_AUTH_STRATEGY=keystone
+export OS_REGION_NAME=RegionOne
 TENANT_NAME=<%= @tenant_name %>
 TENANT_NETWORK_NAME=<%= @tenant_network %>
 TENANT_SUBNET_NAME=<%= @tenant_subnet %>

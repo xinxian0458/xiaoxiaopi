@@ -5,8 +5,8 @@ class dodai_quantum_network::dodai_quantum_network::install {
   }
 
   Service['quantum-plugin-ovs-service'] ~> class{ 'dodai_quantum_network::dodai_quantum_network::setup_external_network':
-    external_bridge_name => ${external_bridge_name},
-    external_bridge_interface => ${bridge_interface},
+    external_bridge_name => $external_bridge_name,
+    external_bridge_interface => $bridge_interface,
   }
 
   
