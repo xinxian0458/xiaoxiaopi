@@ -114,6 +114,8 @@ clean_nova(){
 	done
 	rm -rf /var/lib/nova/*
 	rm -rf /root/setup_bridge.sh
+	rm -rf /var/lib/libvirt/qemu/instance-*
+	rm -rf /etc/libvirt/qemu/instance-*
 }
 
 #####################################
@@ -133,6 +135,10 @@ clean_cinder(){
 		apt-get purge -y ${software}
 	done
 	rm -rf /var/lib/cinder/*
+	pvremove cinder-volumes
+	vgremove cinder-volumes
+	lodevice = `losetup -a | grep cinder | awk '{print $1}' | cut -f1 -d ":"`
+	losetup -d ${lodevice}
 }
 
 ######################################
@@ -198,6 +204,11 @@ clean_openvswitch(){
 	do
 		apt-get purge -y ${software}
 	done
+	ipnamespaces=`ip netns list`
+	for ipnamespace in $ipnamespaces
+	do
+		ip netns delete ${ipnamespace}
+	done
 }
 
 ################################################
@@ -223,3 +234,4 @@ clean_openvswitch
 clean_quantum
 kill_process
 apt-get -y autoremove
+/etc/init.d/networking restart
