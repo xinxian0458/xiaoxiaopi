@@ -3,6 +3,12 @@ class dodai_quantum_network::dodai_quantum_network::install {
   Service['quantum-plugin-ovs-service'] ~> class{ 'dodai_quantum_compute::dodai_quantum_compute::install::setup_bridge':
     br_names => ['br-int', 'br-tun', 'br-ex'],
   }
+
+  Service['quantum-plugin-ovs-service'] ~> class{ 'dodai_quantum_network::dodai_quantum_network::setup_external_network':
+    external_bridge_name => ${external_bridge_name},
+    external_bridge_interface => ${bridge_interface},
+  }
+
   
   class { '::quantum':
     enabled             => true,
