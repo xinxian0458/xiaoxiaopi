@@ -1,4 +1,8 @@
 class dodai_glance::dodai_glance::install {
+  File['/root/mycirros.img'] -> Class['openstack::glance']
+  Class['openstack::glance'] -> Exec['create_image']
+  Class['openstack::glance'] ~> Exec['create_image']
+
   class { 'openstack::glance':
     verbose          => $verbose,
     db_type          => $db_type,
@@ -17,11 +21,10 @@ class dodai_glance::dodai_glance::install {
   file {
     "/root/mycirros.img":
     source => "puppet:///modules/dodai_glance/mycirros.img",
-    notify  => Exec['create_image'],
   }
 
   exec { 'create_image':
-    command     => "glance --os-username=demo --os-password=password --os-tenant-name=demo --os-auth-url=http://127.0.0.1:5000/v2.0/ image-create --is-public true --disk-format qcow2 --container-format bare --name \"Cirros\" < /root/mycirros.img",
+    command     => "glance --os-username=admin --os-password=password --os-tenant-name=admin --os-auth-url=http://127.0.0.1:5000/v2.0/ image-create --is-public true --disk-format qcow2 --container-format bare --name Cirros < /root/mycirros.img",
     refreshonly => true,
   }
 }
