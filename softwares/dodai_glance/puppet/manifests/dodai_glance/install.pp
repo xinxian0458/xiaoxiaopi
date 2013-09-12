@@ -1,7 +1,6 @@
 class dodai_glance::dodai_glance::install {
-  File['/root/mycirros.img'] -> Class['openstack::glance']
-  Class['openstack::glance'] -> Exec['create_image']
-  Class['openstack::glance'] ~> Exec['create_image']
+
+  Class['openstack::glance'] ~> File['/root/mycirros.img']
 
   class { 'openstack::glance':
     verbose          => $verbose,
@@ -21,6 +20,8 @@ class dodai_glance::dodai_glance::install {
   file {
     "/root/mycirros.img":
     source => "puppet:///modules/dodai_glance/mycirros.img",
+    notify => Exec['create_image'],
+    require => Service['glance-api'],
   }
 
   exec { 'create_image':
