@@ -204,18 +204,12 @@ clean_openvswitch(){
 	do
 		apt-get purge -y ${software}
 	done
-	sleep 30
-	ipnamespaces=`ip netns list`
-	for ipnamespace in $ipnamespaces
-	do
-		ip netns delete ${ipnamespace}
-	done
 }
 
 ################################################
 # kill process
 ################################################
-kill_process(){
+clean_process(){
 	processes="kvm dnsmasq quantum"
 	for process in $processes
 	do
@@ -223,16 +217,49 @@ kill_process(){
 	done
 }
 
-clean_apt
-clean_mysql
-clean_rabbitmq
-clean_keystone
-clean_glance
-clean_nova
-clean_cinder
-clean_horizon
-clean_openvswitch
-clean_quantum
-kill_process
+#################################################
+# clean network
+#################################################
+clean_network(){
+	sleep 30
+	ipnamespaces=`ip netns list`
+	for ipnamespace in $ipnamespaces
+	do
+		ip netns delete ${ipnamespace}
+	done
+	interfaces=`ifconfig | grep Ethernet | grep -v eth | awk '{print $1}'`
+	for interface in $interfaces
+	do
+		ip link set ${interface} down
+		ip link delete ${interface}
+	done
+}
+
+function clean {
+	target=$1
+	echo "-----------------Begin to clean $target-----------------------"
+	clean_$target
+	echo "-----------------Finished---------------------------------------"
+	echo ""
+}
+
+type=$1
+if [ "$type" = "all" ]; then
+	clean_apt
+	clean_mysql
+	clean_rabbitmq
+	clean_keystone
+	clean_glance
+	clean_nova
+	clean_cinder
+	clean_horizon
+	clean_openvswitch
+	clean_quantum
+	clean_process
+	clean_network
+else
+	clean $type
+fi
+
 apt-get -y autoremove
 /etc/init.d/networking restart
